@@ -6,6 +6,8 @@ export const metadata = {
   title: "Add a tool — The Open Library",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function NewToolPage() {
   const [categoryRows, tagRows] = await Promise.all([
     prisma.tool.findMany({ select: { category: true }, distinct: ["category"] }),

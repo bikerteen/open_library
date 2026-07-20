@@ -7,6 +7,8 @@ export const metadata = {
   title: "Admin — The Open Library",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboard() {
   const tools = await prisma.tool.findMany({
     include: { tags: true },

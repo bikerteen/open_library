@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import HomeSearch from "@/components/HomeSearch";
 import ToolCard from "@/components/ToolCard";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [featured, categoryRows, toolCount] = await Promise.all([
     prisma.tool.findMany({

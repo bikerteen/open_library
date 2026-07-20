@@ -6,6 +6,8 @@ export const metadata = {
   title: "Library — The Open Library",
 };
 
+export const dynamic = "force-dynamic";
+
 async function LibraryContent() {
   const [tools, categoryRows, tagRows] = await Promise.all([
     prisma.tool.findMany({
