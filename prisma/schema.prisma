@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Tool {
+  id          String   @id @default(cuid())
+  name        String
+  tagline     String
+  description String
+  url         String
+  category    String
+  pricing     String   @default("Free & Open Source")
+  icon        String   @default("✨")
+  featured    Boolean  @default(false)
+  tags        Tag[]    @relation("ToolTags")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  tools Tool[] @relation("ToolTags")
+}
